@@ -1,5 +1,5 @@
 # Artifact Registry tools for PyPI
-This repository contains an alternate keyring backend implementation to help with interacting with PyPI Repositories hosted on Artifact Registry.
+This repository contains an alternate [keyring](https://pypi.python.org/pypi/keyring) backend implementation to help with interacting with PyPI Repositories hosted on Artifact Registry.
 
 ## Authentication
 artifactregistry-gauth is a python package which allows you to configure keyring to interact with PyPI repositories stored in Artifact Registry.
