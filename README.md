@@ -2,7 +2,7 @@
 This repository contains an alternate [keyring](https://pypi.python.org/pypi/keyring) backend implementation to help with interacting with PyPI Repositories hosted on Artifact Registry.
 
 ## Authentication
-artifactregistry-gauth is a python package which allows you to configure keyring to interact with PyPI repositories stored in Artifact Registry.
+keyrings.google-artifactregistry-auth is a python package which allows you to configure keyring to interact with PyPI repositories stored in Artifact Registry.
 
 The backend automatically searches for credentials from the environment and authenticates to Artifact Registry. It looks for credentials in the following order:
 
