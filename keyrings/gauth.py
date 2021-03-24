@@ -37,7 +37,7 @@ class GooglePyPIAuth(backend.KeyringBackend):
 
   def get_password(self,service,username):
     url = urlparse(service)
-    if not url.hostname.endswith(".pkg.dev"):
+    if url.hostname is None or not url.hostname.endswith(".pkg.dev"):
       return
 
     #trying application default credentials otherwise fall back to gcloud credentials command
