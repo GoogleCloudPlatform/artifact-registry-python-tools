@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import os
 
 import google
 from google.auth.transport import requests
@@ -39,6 +40,9 @@ class GooglePyPIAuth(backend.KeyringBackend):
     url = urlparse(service)
     if url.hostname is None or not url.hostname.endswith(".pkg.dev"):
       return
+
+    if os.environ.get("ARTIFACT_ACCESS_TOKEN"):
+      return os.environ["ARTIFACT_ACCESS_TOKEN"]
 
     #trying application default credentials otherwise fall back to gcloud credentials command
     try:
