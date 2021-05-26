@@ -54,7 +54,7 @@ To use the keyring backend:
 
 	```
 	[global]
-	index-url = https://LOCATION-pypi.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
+	extra-index-url = https://LOCATION-pypi.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
 	```
 3. Install the `keyrings.google-artifactregistry-auth` package
 
