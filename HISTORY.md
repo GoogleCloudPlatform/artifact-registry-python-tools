@@ -1,3 +1,10 @@
+0.0.3
+---
+
+* Allow project to bootstrap itself with tox
+  https://github.com/GoogleCloudPlatform/artifact-registry-pypi-tools/issues/7
+* Update classname and python endpoints
+
 0.0.2
 ---
 
