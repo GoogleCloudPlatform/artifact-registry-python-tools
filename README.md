@@ -47,14 +47,14 @@ To use the keyring backend:
 		REPOSITORY_ID
 
 	[REPOSITORY_ID]
-	repository: https://LOCATION-pypi.pkg.dev/PROJECT_ID/REPOSITORY_ID/
+	repository: https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
 	```
 
 	In your `pip.conf` file add:
 
 	```
 	[global]
-	extra-index-url = https://LOCATION-pypi.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
+	extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
 	```
 3. Install the `keyrings.google-artifactregistry-auth` package
 
@@ -70,8 +70,8 @@ To use the keyring backend:
 
    The list should include
 
-   * `keyrings.gauth.GooglePyPIAuth (priority: 9)`
-   * `keyring.backends.chainer.ChainerBackend (priority: 10)`
+   * `keyrings.gauth.GooglePythonAuth (priority: 9)`
+   * `keyring.backends.chainer.ChainerBackend (priority: -1)`
    * `keyring.backends.fail.Keyring (priority: 0)`
 
 ## Usage with other tools
@@ -100,7 +100,7 @@ an extra index, and specify both public and private dependencies:
     ```
     [testenv]
     setenv =
-        PIP_EXTRA_INDEX_URL = https://[REGION]-pypi.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
+        PIP_EXTRA_INDEX_URL = https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
     deps =
         # samplepackage will be installed directly from PyPI
         samplepackage
