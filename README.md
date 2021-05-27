@@ -70,6 +70,6 @@ To use the keyring backend:
 
    The list should include
 
-   * `keyrings.gauth.GooglePyPIAuth (priority: 9)`
+   * `keyrings.gauth.GooglePythonAuth (priority: 9)`
    * `keyring.backends.chainer.ChainerBackend (priority: 10)`
    * `keyring.backends.fail.Keyring (priority: 0)`
