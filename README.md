@@ -73,3 +73,37 @@ To use the keyring backend:
    * `keyrings.gauth.GooglePyPIAuth (priority: 9)`
    * `keyring.backends.chainer.ChainerBackend (priority: 10)`
    * `keyring.backends.fail.Keyring (priority: 0)`
+
+## Usage with other tools
+
+### Usage with `tox`
+
+The [`tox` tool](https://pypi.org/project/tox/) is a testing and automation tool.
+
+Because the credential helper needs to be installed _before_ any private
+dependencies are installed, it needs to be bootstrapped into the `tox`
+environment via a plugin.
+
+To do this, specify the `keyrings.google-artifactregistry-auth` package via the
+[`requires`](https://tox.readthedocs.io/en/latest/config.html#conf-requires)
+requirement in your `tox.ini` file:
+
+    ```
+    [tox]
+    envlist = py
+    requires = keyrings.google-artifactregistry-auth
+    ```
+
+You can then configure your `tox.ini` file to use the Artifact Registry repo as
+an extra index, and specify both public and private dependencies:
+
+    ```
+    [testenv]
+    setenv =
+        PIP_EXTRA_INDEX_URL = https://[REGION]-pypi.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
+    deps =
+        # samplepackage will be installed directly from PyPI
+        samplepackage
+        # mypackage will be installed from the Artifact Registry repository
+        mypackage
+    ```
