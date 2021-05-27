@@ -28,7 +28,7 @@ import json
 import logging
 import subprocess
 
-class GooglePyPIAuth(backend.KeyringBackend):
+class GooglePythonAuth(backend.KeyringBackend):
   priority = 9
 
   """
