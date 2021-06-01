@@ -37,7 +37,7 @@ To use the keyring backend:
 
 2. Configure twine (`.pypirc`) and pip (`pip.conf`) tools to connect to the repository. Use the output from the following command:
 
-	    $ gcloud alpha artifacts print-settings pypi
+	    $ gcloud alpha artifacts print-settings python
 
 	In your `.pypirc` file add:
 
@@ -47,14 +47,14 @@ To use the keyring backend:
 		REPOSITORY_ID
 
 	[REPOSITORY_ID]
-	repository: https://LOCATION-pypi.pkg.dev/PROJECT_ID/REPOSITORY_ID/
+	repository: https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
 	```
 
 	In your `pip.conf` file add:
 
 	```
 	[global]
-	extra-index-url = https://LOCATION-pypi.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
+	extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
 	```
 3. Install the `keyrings.google-artifactregistry-auth` package
 
@@ -100,7 +100,7 @@ an extra index, and specify both public and private dependencies:
     ```
     [testenv]
     setenv =
-        PIP_EXTRA_INDEX_URL = https://[REGION]-pypi.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
+        PIP_EXTRA_INDEX_URL = https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
     deps =
         # samplepackage will be installed directly from PyPI
         samplepackage
