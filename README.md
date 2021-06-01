@@ -41,7 +41,7 @@ To use the keyring backend:
 
     In your `.pypirc` file add:
 
-    ```
+    ```ini
     [disutils]
     index-servers =
         REPOSITORY_ID
@@ -52,7 +52,7 @@ To use the keyring backend:
 
     In your `pip.conf` file add:
 
-    ```
+    ```ini
     [global]
     extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
     ```
@@ -88,22 +88,22 @@ To do this, specify the `keyrings.google-artifactregistry-auth` package via the
 [`requires`](https://tox.readthedocs.io/en/latest/config.html#conf-requires)
 requirement in your `tox.ini` file:
 
-    ```
-    [tox]
-    envlist = py
-    requires = keyrings.google-artifactregistry-auth
-    ```
+```ini
+[tox]
+envlist = py
+requires = keyrings.google-artifactregistry-auth
+```
 
 You can then configure your `tox.ini` file to use the Artifact Registry repo as
 an extra index, and specify both public and private dependencies:
 
-    ```
-    [testenv]
-    setenv =
-        PIP_EXTRA_INDEX_URL = https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
-    deps =
-        # samplepackage will be installed directly from PyPI
-        samplepackage
-        # mypackage will be installed from the Artifact Registry repository
-        mypackage
-    ```
+```ini
+[testenv]
+setenv =
+    PIP_EXTRA_INDEX_URL = https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
+deps =
+    # samplepackage will be installed directly from PyPI
+    samplepackage
+    # mypackage will be installed from the Artifact Registry repository
+    mypackage
+```
