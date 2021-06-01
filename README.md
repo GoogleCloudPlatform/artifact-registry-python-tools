@@ -62,17 +62,17 @@ To use the keyring backend:
     $ pip install keyrings.google-artifactregistry-auth
     ```
 
-   List backends to confirm the installation.
+    List backends to confirm the installation.
 
-   ```
-   $ keyring --list-backends
-   ```
+    ```
+    $ keyring --list-backends
+    ```
 
-   The list should include
+    The list should include
 
-   * `keyrings.gauth.GooglePythonAuth (priority: 9)`
-   * `keyring.backends.chainer.ChainerBackend (priority: -1)`
-   * `keyring.backends.fail.Keyring (priority: 0)`
+    * `keyrings.gauth.GooglePythonAuth (priority: 9)`
+    * `keyring.backends.chainer.ChainerBackend (priority: -1)`
+    * `keyring.backends.fail.Keyring (priority: 0)`
 
 ## Usage with other tools
 
