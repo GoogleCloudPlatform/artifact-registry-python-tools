@@ -15,47 +15,47 @@ To use the keyring backend:
 
 1. Log in
 
-	Option 1: log in as a service account:
+    Option 1: log in as a service account:
 
-	(1). Using a JSON file that contains a service account key:
+    (1). Using a JSON file that contains a service account key:
 
-	```
+    ```
     $ export GOOGLE_APPLICATION_CREDENTIALS=[path/to/key.json]
     ```
 
-	(2). Or using `gcloud`:
+    (2). Or using `gcloud`:
 
-	```
+    ```
     $ gcloud auth application-default login
     ```
 
-	Option 2: log in as an end user via `gcloud`:
+    Option 2: log in as an end user via `gcloud`:
 
     ```
-	$ gcloud auth login
+    $ gcloud auth login
     ```
 
 2. Configure twine (`.pypirc`) and pip (`pip.conf`) tools to connect to the repository. Use the output from the following command:
 
-	    $ gcloud alpha artifacts print-settings pypi
+        $ gcloud alpha artifacts print-settings pypi
 
-	In your `.pypirc` file add:
+    In your `.pypirc` file add:
 
-	```
-	[disutils]
-	index-servers =
-		REPOSITORY_ID
+    ```
+    [disutils]
+    index-servers =
+        REPOSITORY_ID
 
-	[REPOSITORY_ID]
-	repository: https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
-	```
+    [REPOSITORY_ID]
+    repository: https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
+    ```
 
-	In your `pip.conf` file add:
+    In your `pip.conf` file add:
 
-	```
-	[global]
-	extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
-	```
+    ```
+    [global]
+    extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
+    ```
 3. Install the `keyrings.google-artifactregistry-auth` package
 
     ```
