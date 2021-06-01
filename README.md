@@ -47,7 +47,7 @@ To use the keyring backend:
         REPOSITORY_ID
 
     [REPOSITORY_ID]
-    repository: https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
+    repository = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
     ```
 
     In your `pip.conf` file add:
