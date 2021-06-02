@@ -15,64 +15,64 @@ To use the keyring backend:
 
 1. Log in
 
-	Option 1: log in as a service account:
+    Option 1: log in as a service account:
 
-	(1). Using a JSON file that contains a service account key:
+    (1). Using a JSON file that contains a service account key:
 
-	```
+    ```
     $ export GOOGLE_APPLICATION_CREDENTIALS=[path/to/key.json]
     ```
 
-	(2). Or using `gcloud`:
+    (2). Or using `gcloud`:
 
-	```
+    ```
     $ gcloud auth application-default login
     ```
 
-	Option 2: log in as an end user via `gcloud`:
+    Option 2: log in as an end user via `gcloud`:
 
     ```
-	$ gcloud auth login
+    $ gcloud auth login
     ```
 
 2. Configure twine (`.pypirc`) and pip (`pip.conf`) tools to connect to the repository. Use the output from the following command:
 
-	    $ gcloud alpha artifacts print-settings pypi
+        $ gcloud alpha artifacts print-settings pypi
 
-	In your `.pypirc` file add:
+    In your `.pypirc` file add:
 
-	```
-	[disutils]
-	index-servers =
-		REPOSITORY_ID
+    ```ini
+    [disutils]
+    index-servers =
+        REPOSITORY_ID
 
-	[REPOSITORY_ID]
-	repository: https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
-	```
+    [REPOSITORY_ID]
+    repository = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/
+    ```
 
-	In your `pip.conf` file add:
+    In your `pip.conf` file add:
 
-	```
-	[global]
-	extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
-	```
+    ```ini
+    [global]
+    extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
+    ```
 3. Install the `keyrings.google-artifactregistry-auth` package
 
     ```
     $ pip install keyrings.google-artifactregistry-auth
     ```
 
-   List backends to confirm the installation.
+    List backends to confirm the installation.
 
-   ```
-   $ keyring --list-backends
-   ```
+    ```
+    $ keyring --list-backends
+    ```
 
-   The list should include
+    The list should include
 
-   * `keyrings.gauth.GooglePythonAuth (priority: 9)`
-   * `keyring.backends.chainer.ChainerBackend (priority: -1)`
-   * `keyring.backends.fail.Keyring (priority: 0)`
+    * `keyrings.gauth.GooglePythonAuth (priority: 9)`
+    * `keyring.backends.chainer.ChainerBackend (priority: -1)`
+    * `keyring.backends.fail.Keyring (priority: 0)`
 
 ## Usage with other tools
 
@@ -88,22 +88,22 @@ To do this, specify the `keyrings.google-artifactregistry-auth` package via the
 [`requires`](https://tox.readthedocs.io/en/latest/config.html#conf-requires)
 requirement in your `tox.ini` file:
 
-    ```
-    [tox]
-    envlist = py
-    requires = keyrings.google-artifactregistry-auth
-    ```
+```ini
+[tox]
+envlist = py
+requires = keyrings.google-artifactregistry-auth
+```
 
 You can then configure your `tox.ini` file to use the Artifact Registry repo as
 an extra index, and specify both public and private dependencies:
 
-    ```
-    [testenv]
-    setenv =
-        PIP_EXTRA_INDEX_URL = https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
-    deps =
-        # samplepackage will be installed directly from PyPI
-        samplepackage
-        # mypackage will be installed from the Artifact Registry repository
-        mypackage
-    ```
+```ini
+[testenv]
+setenv =
+    PIP_EXTRA_INDEX_URL = https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
+deps =
+    # samplepackage will be installed directly from PyPI
+    samplepackage
+    # mypackage will be installed from the Artifact Registry repository
+    mypackage
+```
