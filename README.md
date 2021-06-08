@@ -92,18 +92,19 @@ requirement in your `tox.ini` file:
 [tox]
 envlist = py
 requires = keyrings.google-artifactregistry-auth
+
+[testenv]
+deps = -r requirements.txt
 ```
 
-You can then configure your `tox.ini` file to use the Artifact Registry repo as
+You can then configure your `requirement.txt` file to use the Artifact Registry repo as
 an extra index, and specify both public and private dependencies:
 
-```ini
-[testenv]
-setenv =
-    PIP_EXTRA_INDEX_URL = https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
-deps =
-    # samplepackage will be installed directly from PyPI
-    samplepackage
-    # mypackage will be installed from the Artifact Registry repository
-    mypackage
+```
+--extra-index-url https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
+
+# samplepackage will be installed directly from PyPI
+samplepackage
+# mypackage will be installed from the Artifact Registry repository
+mypackage
 ```
