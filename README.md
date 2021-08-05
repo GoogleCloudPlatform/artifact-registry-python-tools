@@ -37,7 +37,7 @@ To use the keyring backend:
 
 2. Configure twine (`.pypirc`) and pip (`pip.conf`) tools to connect to the repository. Use the output from the following command:
 
-        $ gcloud alpha artifacts print-settings pypi
+        $ gcloud alpha artifacts print-settings python
 
     In your `.pypirc` file add:
 
