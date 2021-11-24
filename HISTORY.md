@@ -1,3 +1,7 @@
+1.0.0
+---
+* Upgrading tool to version 1.0.0 since Artifact Registry Python Repositories is now in GA. 
+
 0.0.3
 ---
 
