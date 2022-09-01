@@ -1,3 +1,7 @@
+1.0.1
+---
+* Update keyring import to be compatible with keyring 23.9.0. 
+
 1.0.0
 ---
 * Upgrading tool to version 1.0.0 since Artifact Registry Python Repositories is now in GA. 
