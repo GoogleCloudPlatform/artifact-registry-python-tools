@@ -1,7 +1,15 @@
-1.0.1
+1.1.2
 ---
 * Use service as hostname fallback to enable http redirect use cases.
   https://github.com/GoogleCloudPlatform/artifact-registry-python-tools/pull/29
+
+1.1.1
+---
+* Remove unused keyring import to prevent keyring dependency issues. 
+
+1.1.0
+---
+* Update keyring import to be compatible with keyring 23.9.0. 
 
 1.0.0
 ---

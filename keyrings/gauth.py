@@ -21,7 +21,6 @@ from google.auth.exceptions import DefaultCredentialsError
 import keyring
 from keyring import backend
 from keyring import credentials
-from keyring.util import properties
 from urllib.parse import urlparse
 
 import json
