@@ -1,3 +1,8 @@
+1.1.2
+---
+* Use service as hostname fallback to enable http redirect use cases.
+  https://github.com/GoogleCloudPlatform/artifact-registry-python-tools/pull/29
+
 1.1.1
 ---
 * Remove unused keyring import to prevent keyring dependency issues. 
@@ -8,7 +13,7 @@
 
 1.0.0
 ---
-* Upgrading tool to version 1.0.0 since Artifact Registry Python Repositories is now in GA. 
+* Upgrading tool to version 1.0.0 since Artifact Registry Python Repositories is now in GA.
 
 0.0.3
 ---
