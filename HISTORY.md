@@ -1,3 +1,7 @@
+1.1.2
+---
+* Add support for tox v4.
+
 1.1.1
 ---
 * Remove unused keyring import to prevent keyring dependency issues. 
