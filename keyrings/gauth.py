@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import os
+
 import google
 from google.auth.transport import requests
 from google.auth.exceptions import DefaultCredentialsError
@@ -72,13 +74,42 @@ class GooglePythonAuth(backend.KeyringBackend):
 
 def get_gcloud_credential():
 
-  # fall back to fetching credentials from gcloud if Application Default Credentials fails
-  try:
-    logging.warning("Trying to retrieve credentials from gcloud...")
-    command = subprocess.run(['gcloud','config','config-helper','--format=json(credential)'], check=True, stdout=subprocess.PIPE, universal_newlines=True)
-  except Exception as e:
-    raise Exception ("gcloud command exited with status: {0}".format(e))
-  result = json.loads(command.stdout)
+  # check if the user has set a GOOGLE_ACCESS_TOKEN env var
+  # this value can be retrieved from
+  #
+  #  $ gcloud auth print-access-token
+  #  (or)
+  #  $ GOOGLE_ACCESS_TOKEN=$(gcloud auth print-access-token) python3 ...
+  #
+  # we will return this token immediately.
+  # developers please note that, this token is only valid for 1 hour.
+  access_token = os.getenv("GOOGLE_ACCESS_TOKEN")
+  if access_token is not None:
+    logging.warning("Using access token from GOOGLE_ACCESS_TOKEN env var...")
+    return access_token
+
+  # check if the user has set a GOOGLE_ACCESS_TOKEN_CREDENTIALS
+  # this is a json file, which can be exported like
+  #
+  #  $ gcloud config config-helper --format="json(credential)" > key.json
+  #  $ GOOGLE_ACCESS_TOKEN_CREDENTIALS=key.json python3 some.py
+  #
+  access_token_credentials_file = os.getenv("GOOGLE_ACCESS_TOKEN_CREDENTIALS")
+  if access_token_credentials_file is not None:
+    logging.warning("Using access token from file defined in GOOGLE_ACCESS_TOKEN_CREDENTIALS env var...")
+    with open(access_token_credentials_file) as fp:
+      json_data = fp.read()
+  else:
+    # fall back to fetching credentials from gcloud if Application Default Credentials fails
+    # and if other env var approaches fail
+    try:
+      logging.warning("Trying to retrieve credentials from gcloud...")
+      command = subprocess.run(['gcloud','config','config-helper','--format=json(credential)'], check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    except Exception as e:
+      raise Exception ("gcloud command exited with status: {0}".format(e))
+    json_data = command.stdout
+
+  result = json.loads(json_data)
   credential = result.get("credential")
   if credential is None:
     raise Exception("No credential returned from gcloud")
