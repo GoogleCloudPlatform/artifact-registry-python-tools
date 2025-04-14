@@ -54,7 +54,7 @@ To use the keyring backend:
 
     ```ini
     [global]
-    extra-index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
+    index-url = https://LOCATION-python.pkg.dev/PROJECT_ID/REPOSITORY_ID/simple/
     ```
 3. Install the `keyrings.google-artifactregistry-auth` package
 
@@ -97,14 +97,12 @@ requires = keyrings.google-artifactregistry-auth
 deps = -r requirements.txt
 ```
 
-You can then configure your `requirement.txt` file to use the Artifact Registry repo as
-an extra index, and specify both public and private dependencies:
+You can then configure your `requirement.txt` file to use the Artifact Registry repo as 
+the index:
 
 ```
---extra-index-url https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
+--index-url https://[REGION]-python.pkg.dev/[PROJECT_ID]/[REPOSITORY]/simple
 
-# samplepackage will be installed directly from PyPI
-samplepackage
 # mypackage will be installed from the Artifact Registry repository
 mypackage
 ```
